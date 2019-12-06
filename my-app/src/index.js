@@ -1,28 +1,128 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// function formatDate(date) {
+//     return date.toLocaleDateString();
+//   }
+// function Welcome(props){
+//     return <h1>hello, {props.name}</h1> 
+// }
+// function App(){
+//     return (
+//         <div>
+//             <Clock />
+//             <Clock />
+//             <Clock />
+//         </div>
+//     );
+// }
 
-function Welcome(props){
-    return <h1>hello, {props.name}</h1> 
-}
-function App(){
-    return (
-        <div>
-            <Welcome name = "A"/>
-            <Welcome name = "B"/>
-            <Welcome name = "C"/>
-        </div>
-    );
+// function Comment(props){
+//     return (
+//         <div className = "Comment">
+//             <UserInfo user = {props.author}></UserInfo>
+//             <div className = "Comment-text">
+//                 {props.text}
+//             </div>
+//             <div className = "Comment-data">
+//                 {formatDate(props.date)}
+//             </div>
+//         </div>
+//     );
+// }
+
+// function Avatar(props){
+//     return (<img className = "Avator" src = {props.user.avatarUrl} alt= {props.user.name}></img>);
+// }
+
+// function UserInfo(props){
+//     return (
+//         <div className = "UserInfo">
+//             <Avatar user = {props.user} />
+//             <div className = "UserInfo-name">
+//                 {props.user.name}
+//             </div>
+//         </div>
+//     );
+// }
+// const element = <Welcome name="sara"/>
+// const commentInfo = {
+//     date: new Date(),
+//     text : "ASDASDASDASd",
+//     author:{
+//         name: "Zhiquan",
+//         avatarUrl:"https://www.bing.com/th?id=OPN.RTNews_roWNdwVY4qSRQmvnvFaizw&w=372&h=176&c=7&rs=2&qlt=80&cdv=1&pid=PopNow"
+//     },
+// };
+
+// // function Clock(props){
+// //     return (
+// //         <div> 
+// //             <h1> hello, world</h1>
+// //             <h2> It is {props.date.toLocaleTimeString()}.</h2>
+// //         </div>
+// //     );
+// // }
+// class Clock extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state = {date:new Date()};
+//     }
+
+//     tick(){
+//         this.setState ({date:new Date()});
+//     }
+
+//     componentDidMount(){
+//         this.TimerID = setInterval(
+//             ()=>this.tick(),
+//             10000
+//         );
+//     }
+//     componentWillUnmount(){
+//       clearInterval(this.TimerID);
+//     }
+//     render(){
+//         return (
+//             <div>
+//                 <h1> Clock </h1>
+//                 <h2> Time : {this.state.date.toLocaleTimeString()}.</h2>
+//             </div>
+//         )
+//     }
+// }
+
+// ReactDOM.render(
+//     <App/>,
+//     document.getElementById('root')
+// )
+
+class Toggle extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {isToggleOn : true};
+        this.handleClick = this.handleClick.bind(this); 
+    }
+
+    handleClick(){
+        this.setState({
+            isToggleOn: !this.state.isToggleOn
+        });
+    }
+
+    render(){
+        return (
+            <button onClick = {this.handleClick}>
+                {this.state.isToggleOn ? "on" : "false"}
+            </button>
+        );
+    }
 }
 
-function Comment(props){
-    return (
-        <div className = "Comment"
-    )
-}
-const element = <Welcome name="sara"/>
-ReactDOM.render(<App/>,document.getElementById('root')
-)
+ReactDOM.render(<Toggle/>,document.getElementById('root'));
+
+// ReactDOM.render(<Comment date = {commentInfo.date} text = {commentInfo.text} author = {commentInfo.author}/>,document.getElementById('root'))
+
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 // import './index.css';
