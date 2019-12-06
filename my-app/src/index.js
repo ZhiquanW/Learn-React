@@ -97,29 +97,100 @@ import ReactDOM from 'react-dom';
 //     document.getElementById('root')
 // )
 
-class Toggle extends React.Component{
+
+//2
+function UserGreeting(props){
+    return <h1>Welcome back!</h1>;
+}
+function GuestGreeting(props){
+    return <h1> Please Sign up !!</h1>
+}
+function LoginButton(props){
+    return (
+        <button onClick = {props.onClick}>
+            login
+        </button>
+    );
+}
+
+function LogoutButton(props){
+    return (
+        <button onClick = {props.onClick}>
+            Logout
+        </button>
+    )
+}
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if (isLoggedIn) {
+      return <UserGreeting />;
+    }
+    return <GuestGreeting />;
+  }
+
+class LoginControl extends React.Component{
     constructor(props){
         super(props);
-        this.state = {isToggleOn : true};
-        this.handleClick = this.handleClick.bind(this); 
+        this.handleLoginClick = this.handleLoginClick.bind(this);
+        this.state = {
+            isLoggedIn : false
+        };
     }
 
-    handleClick(){
-        this.setState({
-            isToggleOn: !this.state.isToggleOn
-        });
+    handleLoginClick(){
+        // let newState = !isLoggedIn
+        this.setState(
+            {
+                isLoggedIn : ! this.state.isLoggedIn
+            }
+        );
     }
 
     render(){
+        const isLoggedIn = this.state.isLoggedIn;
+        let tmpButton;
+        if (isLoggedIn){
+            tmpButton = <LogoutButton onClick = {this.handleLoginClick}/>;
+        }else{
+            tmpButton = <LoginButton onClick = {this.handleLoginClick}/>;
+        }
         return (
-            <button onClick = {this.handleClick}>
-                {this.state.isToggleOn ? "on" : "false"}
-            </button>
+            <div>
+                <Greeting isLoggedIn ={isLoggedIn}/>
+                {tmpButton}
+            </div>
         );
     }
 }
 
-ReactDOM.render(<Toggle/>,document.getElementById('root'));
+ReactDOM.render(
+    <LoginControl/>,
+    document.getElementById('root')
+)
+// 1
+// class Toggle extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state = {isToggleOn : true};
+//         this.handleClick = this.handleClick.bind(this); 
+//     }
+
+//     handleClick(){
+//         this.setState({
+//             isToggleOn: !this.state.isToggleOn
+//         });
+//     }
+
+//     render(){
+//         return (
+//             <button onClick = {this.handleClick}>
+//                 {this.state.isToggleOn ? "on" : "false"}
+//             </button>
+//         );
+//     }
+// }
+
+// ReactDOM.render(<Toggle/>,document.getElementById('root'));
 
 // ReactDOM.render(<Comment date = {commentInfo.date} text = {commentInfo.text} author = {commentInfo.author}/>,document.getElementById('root'))
 
